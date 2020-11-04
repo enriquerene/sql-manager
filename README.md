@@ -1,5 +1,5 @@
 # SQL Manager
-A query builder for SQL database.
+PHP library to manage SQL databases.
 
 ## Table of Contents
 - [Support](https://github.com/enriquerene/sql-manager#support)

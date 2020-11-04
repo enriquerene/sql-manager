@@ -1,7 +1,9 @@
 {
     "name": "restful-template/sql-manager",
+	"description": "PHP library to manage SQL databases.",
     "type": "library",
 	"keywords": [ "sql", "database", "query", "mysql" ],
+	"homepage": "https://github.com/enriquerene/sql-manager.git",
 	"license": "GPL-3.0-or-later",
     "authors": [
         {
