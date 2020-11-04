@@ -133,7 +133,7 @@ $where = [ "id" => 1 ];
 $result = $db->delete( $tableName, $where );
 // $result is true if everything ok and false if some error happens.
 ```
-**WARNING!!!** It's important to note that `$where` parameter in `SQLManager::update` and  `SQLManager::update` is optional. If  not given the methods will act in entire table.
+**WARNING!!!** It's important to note that `$where` parameter in `SQLManager::update` and  `SQLManager::delete` is optional. If  not given the methods will act in entire table.
 
 ## <a name="plan"></a> Plan
 Currently support only MySQL. Future versions will support SQLite and PostgreSQL also.
