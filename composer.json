@@ -1,0 +1,17 @@
+{
+    "name": "restful-template/sql-manager",
+    "type": "library",
+	"keywords": [ "sql", "database", "query" ],
+	"license": "GPL-3.0-or-later",
+    "authors": [
+        {
+			"name": "Enrique René Beauxis Reyes",
+			"email": "contato@enriquerene.com.br",
+			"homepage": "https://enriquerene.com.br",
+			"role": "Developer"
+		}
+    ],
+	"require": {
+		"php": "^7.2"
+	}
+}
