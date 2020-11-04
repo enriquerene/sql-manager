@@ -1,6 +1,6 @@
 <?php
 
-$database = [
+return [
 	"host" => "localhost",
 	"name" => "mancab",
 	"charset" => "utf8",

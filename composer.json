@@ -1,7 +1,7 @@
 {
     "name": "restful-template/sql-manager",
     "type": "library",
-	"keywords": [ "sql", "database", "query" ],
+	"keywords": [ "sql", "database", "query", "mysql" ],
 	"license": "GPL-3.0-or-later",
     "authors": [
         {

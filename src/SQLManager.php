@@ -54,41 +54,75 @@ class SQLManager extends PDO {
     }
 
     /**
+	 * Store table structure into object state.
+	 *
      * @param array $tableStructure tableStructure array
      */
 	private function setTableStructure ( array $tableStructure ): void
    	{
         $this->tableStructure = $tableStructure;
     }
+
+    /**
+	 * Get table structure from object state.
+	 *
+     * @return tableStructure array
+     */
 	private function getTableStructure (): void
    	{
         return $this->tableStructure;
     }
+	
     /**
-     * @* @param string $name Database name
+	 * Store table structure into object state.
+	 *
+     * @param array $tableStructure tableStructure array
      */
-    private function setName ( string $name ) {
+	private function setName ( string $name ): void
+	{
         $this->name = $name;
-    }
+	}
+
     /**
-     * @* @param string $host Database host
+	 * Store table structure into object state.
+	 *
+     * @param array $tableStructure tableStructure array
      */
-    private function setHost ( string $host ) {
+	private function setHost ( string $host ): void
+	{
         $this->host = $host;
     }
+
     /**
-     * @* @param string $charset Database charset
+	 * Store table structure into object state.
+	 *
+     * @param array $tableStructure tableStructure array
      */
-    private function setCharset ( string $charset ) {
+	private function setCharset ( string $charset ): void
+	{
         $this->charset = $charset;
     }
+
     /**
-     * @* @param string $prefix Database prefix
+	 * Store table structure into object state.
+	 *
+     * @param array $tableStructure tableStructure array
      */
-    private function setPrefix ( string $prefix ) {
+	private function setPrefix ( string $prefix ): void
+	{
         $this->prefix = $prefix;
-    }
-    private function quoteFields ( string $tableName, array $fields ) {
+	}
+
+    /**
+	 * Store table structure into object state.
+	 *
+     * @param array $tableStructure tableStructure array
+     * @param array $tableStructure tableStructure array
+	 *
+	 * @return
+     */
+	private function quoteFields ( string $tableName, array $fields ): array
+	{
         $tableFields = $this->getTableFields( $tableName );
         if ( $this->getWhereType() ===  "normal" ) {
             foreach ( $fields as $fieldName => $fieldValue ) {
@@ -105,11 +139,31 @@ class SQLManager extends PDO {
         }
         return $quotedValues;
     }
-    private function getTableFields( string $tableName ) {
+	
+    /**
+	 * Store table structure into object state.
+	 *
+     * @param array $tableStructure tableStructure array
+	 *
+	 * @return
+     */
+	private function getTableFields( string $tableName ): array
+	{
         $ts = $this->getTableStructure();
         return $ts[ $tableName ][ "fields" ];
     }
-    private function preppendTablePrefix ( string $tableName, array $fields, bool $assoc = true ) {
+	
+    /**
+	 * Store table structure into object state.
+	 *
+     * @param array $tableStructure tableStructure array
+     * @param array $tableStructure tableStructure array
+     * @param array $tableStructure tableStructure array
+	 *
+	 * @return
+     */
+	private function preppendTablePrefix ( string $tableName, array $fields, bool $assoc = true ): array 
+	{
         if ( $assoc ) {
             foreach ( $fields as $fieldName => $fieldValue ) {
                 $prefixedFields[ $this->getTablePrefix( $tableName ) . $fieldName ] = $fieldValue;
@@ -123,60 +177,96 @@ class SQLManager extends PDO {
     }
 
     /**
-     * @* @param string $tableName DB table name
-     * @* @param array $fields Associative array with fields and values
+	 * Store table structure into object state.
+	 *
+     * @param array $tableStructure tableStructure array
      */
-    private function prepareBody ( string $tableName, array $fields, bool $quotes = true ) {
+	private function prepareBody ( string $tableName, array $fields, bool $quotes = true ): array
+	{
         $fields = $this->preppendTablePrefix( $tableName, $fields );
         if ( $quotes ) {
             $fields = $this->quoteFields( $tableName, $fields );
         }
         return $fields;
     }
-    /**
-     * @* @param string $whereComparative The string to apply in implode function inside select method
-     */
-    private function setWhereComparative ( string $whereComparative ) {
+	
+	private function setWhereComparative ( string $whereComparative ): void
+	{
         $this->whereComparative = $whereComparative;
     }
-    /*
-    *
-    *        PUBLIC
-    *        FUNCTIONS
-    *
-    */
 
 
-    public function getPrefix () {
+
+
+
+
+    /**
+	 * Store table structure into object state.
+	 *
+	 * @return
+     */
+	public function getPrefix (): string
+	{
         return $this->prefix;
     }
-    public function getWhereType () {
+
+    /**
+	 * Store table structure into object state.
+	 *
+	 * @return
+     */
+	public function getWhereType (): string
+	{
         return $this->whereType;
     }
-    public function getWhereComparative () {
+
+    /**
+	 * Store table structure into object state.
+	 *
+	 * @return
+     */
+	public function getWhereComparative (): string
+	{
         return $this->whereComparative;
     }
-    /*
-     * @* @param string $name Database name
+
+    /**
+	 * Store table structure into object state.
+	 *
+	 * @return
      */
-    public function getName () {
+	public function getName (): string
+	{
         return $this->name;
     }
-    /*
-     * @* @param string $host Database host
+
+    /**
+	 * Store table structure into object state.
+	 *
+	 * @return
      */
-    public function getHost () {
+	public function getHost (): string
+	{
         return $this->host;
     }
-    /*
-     * @* @param string $charset Database charset
+
+    /**
+	 * Store table structure into object state.
+	 *
+     * @param array $tableStructure tableStructure array
      */
-    public function getCharset () {
+	public function getCharset (): string
+	{
         return $this->charset;
     }
+
     /**
+	 * Store table structure into object state.
+	 *
+	 * @return
      */
-    public function isEmpty () {
+	public function isEmpty (): string
+	{
         $sql = "SHOW TABLES";
         $preparedSql = parent::prepare( $sql );
         $preparedSql->execute();
@@ -185,9 +275,14 @@ class SQLManager extends PDO {
         }
         return count( $tables ) === 0;
     }
+
     /**
+	 * Store table structure into object state.
+	 *
+	 * @return
      */
-    public function createTables () {
+	public function createTables (): int
+	{
         foreach ( $this->getTableStructure() as $tableName => $tData ) {
             $sql = "CREATE TABLE IF NOT EXISTS " . $this->getPrefix() . "$tableName ( ";
             $prefix = $tData[ "prefix" ];
@@ -226,60 +321,92 @@ class SQLManager extends PDO {
             $fieldPairs = [];
         }
         return count( $execs );
-        // return 0;
     }
+
     /**
-     * @* @param string $tableName check if there is tableName table
+	 * Store table structure into object state.
+	 *
+     * @param array $tableStructure tableStructure array
+	 *
+	 * @return
      */
-    public function isTable ( string $tableName ) {
+	public function isTable ( string $tableName ): bool
+	{
         return array_key_exists( $tableName, $this->getTableStructure() );
     }
 
     /**
-     * @* @param string $joinner The string to apply in implode function inside select method
+	 * Store table structure into object state.
+	 *
+     * @param array $tableStructure tableStructure array
      */
-    public function setWhereJoinner ( string $joinner ) {
+	public function setWhereJoinner ( string $joinner ): SQLManager
+	{
         $this->whereJoinner = $joinner;
+		return $this;
     }
+
     /**
-     * @* @param string $whereType The string to apply in implode function inside select method
+	 * Store table structure into object state.
+	 *
+     * @param array $tableStructure tableStructure array
+	 *
+	 * @return
      */
-    public function setWhereType ( string $whereType ) {
+	public function setWhereType ( string $whereType ): SQLManager
+	{
         $this->whereType = $whereType;
         if ( $whereType === "like" ) {
             $this->setWhereComparative( "LIKE" );
         }
+		return $this;
     }
     
     /**
-     * @* @param int $selectLimit The limit of rows inside select method
-     * @* @param int $selectOffset The offset param in limit select query
+	 * Store table structure into object state.
+	 *
+     * @param array $tableStructure tableStructure array
+     * @param array $tableStructure tableStructure array
+	 *
+	 * @return
      */
-    public function setSelectLimit ( int $selectLimit = null, int $selectOffset = null ) {
+	public function setSelectLimit ( int $selectLimit = null, int $selectOffset = null ): SQLManager
+	{
         $this->selectLimit = $selectLimit;
         $this->selectOffset = $selectOffset;
+		return $this;
     }
 
-    
-    
-    public function getTablePrefix( string $tableName ) {
+    /**
+	 * Store table structure into object state.
+	 *
+     * @param array $tableStructure tableStructure array
+	 *
+	 * @return
+     */
+	public function getTablePrefix( string $tableName ): string
+	{
         $ts = $this->getTableStructure();
         return $ts[ $tableName ][ "prefix" ];
     }
-    
 
     /**
-     * @* @param boolean $debug true or false for debugging messages
+	 * Store table structure into object state.
+	 *
+     * @param array $tableStructure tableStructure array
      */
-    public function debug ( bool $debug ) {
+	public function debug ( bool $debug ): void
+	{
         $this->debug = $debug;
     }
 
     /**
-     * @* @param string $tableName DB table name
-     * @* @param array $fields Associative array with fields
+	 * Store table structure into object state.
+	 *
+     * @param array $tableStructure tableStructure array
      */
-    public function insert ( string $tableName, array $fields ) {
+	public function insert ( string $tableName, array $fields ): bool
+	{
         $preparedFields = $this->prepareBody( $tableName, $fields );
         $columns = implode( ",", array_keys( $preparedFields ) );
         $vals = implode( ",", array_values( $preparedFields ) );
@@ -293,12 +420,17 @@ class SQLManager extends PDO {
     }
 
     /**
-     * @* @param string $tableName DB table name
-     * @* @param array $fields Non-associative array with fields
-     * @* @param array $where Associative array with fields and values
-     * @* @param array $order Associative array with fields and ASC | DESC
+	 *
+	 *
+     * @param string $tableName DB table name
+     * @param array $fields Non-associative array with fields
+     * @param array $where Associative array with fields and values
+     * @param array $order Associative array with fields and ASC | DESC
+	 *
+	 * @return
      */
-    public function select ( string $tableName, array $fields = [], array $where = [], array $order = [] ) {
+	public function select ( string $tableName, array $fields = [], array $where = [], array $order = [] ): array
+	{
         // Handle $fields array
         $fieldsSql = "*";
         if ( count( $fields ) > 0 ) {
@@ -345,7 +477,14 @@ class SQLManager extends PDO {
      * @* @param array $where Associative array with fields and values
      * @* @param array $order Associative array with fields and ASC | DESC
      */
-    public function countTable ( string $tableName, array $where = [] ) {
+
+    /**
+	 * Store table structure into object state.
+	 *
+     * @param array $tableStructure tableStructure array
+     */
+	public function countTable ( string $tableName, array $where = [] ): int
+	{
         // Handle $where array
         $whereSql = "";
         if ( count( $where ) > 0 ) {
@@ -369,7 +508,14 @@ class SQLManager extends PDO {
      * @* @param array $fields Associative array with fields and values
      * @* @param array $where Associative array with fields and values
      */
-    public function update ( string $tableName, array $fields, array $where = [] ) {
+
+    /**
+	 * Store table structure into object state.
+	 *
+     * @param array $tableStructure tableStructure array
+     */
+	public function update ( string $tableName, array $fields, array $where = [] ): bool
+	{
         // Handle $fields array
         $preparedFields = $this->prepareBody( $tableName, $fields );
         // $columns = implode( ",", array_keys( $preparedFields ) );
@@ -398,7 +544,14 @@ class SQLManager extends PDO {
      * @* @param string $tableName DB table name
      * @* @param array $where Associative array with fields and values
      */
-    public function delete ( string $tableName, array $where = [] ) {
+
+    /**
+	 * Store table structure into object state.
+	 *
+     * @param array $tableStructure tableStructure array
+     */
+	public function delete ( string $tableName, array $where = [] ): bool
+	{
         // Handle $where array
         $sql = "TRUNCATE $tableName";
         if ( count( $where ) > 0 ) {
