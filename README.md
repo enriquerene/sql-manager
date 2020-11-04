@@ -113,11 +113,11 @@ use RESTfulTemplate\SQLManager as SMan;
 $body = [
 	"model" => "correct model",
 ];
-$carId = 1;
+$where = [ "id" => 1 ];
 
 $db = new SMan( $dbInfo );
 $tableName = "cars";
-$result = $db->update( $tableName, $body, $carId );
+$result = $db->update( $tableName, $body, $where );
 // $result is true if everything ok and false if some error happens.
 ```
 
