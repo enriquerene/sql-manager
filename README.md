@@ -81,7 +81,7 @@ use RESTfulTemplate\SQLManager as SMan;
 $db = new SMan( $dbInfo );
 $tableName = "cars";
 $data = $db->select( $tableName, [ "id, year" ] );
-// $data contains the three requested columns (id and year) for each row in cars table
+// $data contains the two requested columns (id and year) for each row in cars table
 
 $data = $db->select( $tableName, [], [ "year" => "2010" ] );
 // $data contains rows from cars table where column year has value 2010
