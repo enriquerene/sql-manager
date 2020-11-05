@@ -1,51 +1,32 @@
 <?php
 
-return [
+$database = [
 	"host" => "localhost",
-	"name" => "mancab",
+	"name" => "database_name",
 	"charset" => "utf8",
-	"user" => "mancab",
-	"password" => "pSikSL(TxBe8T]yd",
-	"prefix" => "mcb_",
+	"user" => "database_user",
+	"password" => "database_password",
+	"prefix" => "db_",
 	"tables" => [
-		"products" => [
-			"prefix" => "product_",
-			"primary" => "id",
-			"unique" => [ "name" ],
-			// "default" => [ "date" => 0 ],
-			"fields" => [
-				"id" => "int(11)",
-				"date" => "date",
-				"content" => "text",
-				"title" => "varchar(80)",
-				"name" => "varchar(100)",
-				"excerpt" => "varchar(100)",
-				"img" => "varchar(100)",
-				"tagIds" => "varchar(100)",
-			],
-		],
-		"tags" => [
-			"prefix" => "tag_",
+		"cars" => [
+			"prefix" => "car_",
 			"primary" => "id",
 			"unique" => [ "name" ],
 			"fields" => [
 				"id" => "int(11)",
-				"name" => "varchar(100)",
-			],
-		],
-		"reviews" => [
-			"prefix" => "review_",
-			"primary" => "id",
-			"unique" => [ "name" ],
-			// "default" => [ "date" => 0 ],
-			"fields" => [
-				"id" => "int(11)",
-				"date" => "date",
-				"productId" => "int(11)",
-				"content" => "text",
-				"title" => "varchar(80)",
-				"name" => "varchar(100)",
-			],
-		],
+				"model" => "varchar(30)",
+				"brand" => "varchar(30)",
+				"year" => "char(4)"
+			]
+		]
 	]
 ];
+
+return [
+    "settings" => [
+        "displayErrorDetails" => true,
+        "addContentLengthHeader" => true,
+        "database" => $database
+    ]
+];
+

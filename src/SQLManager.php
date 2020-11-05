@@ -6,7 +6,8 @@ namespace RESTfulTemplate;
 use Exception;
 use PDO;
 
-class SQLManager extends PDO {
+class SQLManager extends PDO
+{
 	const REQUIRED_FIELDS = [ "host", "name", "charset", "user", "password", "prefix", "tables" ];
 	const DEFAULT_PDO_OPTIONS = [
 		PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
